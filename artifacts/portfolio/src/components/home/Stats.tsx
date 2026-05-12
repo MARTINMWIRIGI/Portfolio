@@ -42,10 +42,10 @@ export default function Stats() {
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { num: "9+", label: "Projects Delivered" },
                 { num: "7", label: "Industries Served" },
                 { num: "100%", label: "Client Satisfaction" },
-                { num: "5+", label: "Years of Excellence" }
+                { num: "5+", label: "Years of Excellence" },
+                { num: "East Africa", label: "Region Served" }
               ].map((stat, i) => (
                 <div key={i} className="bg-[#162033] rounded-2xl p-8 flex flex-col items-center justify-center text-center">
                   <span className="text-5xl font-extrabold text-blue-500 mb-2">{stat.num}</span>

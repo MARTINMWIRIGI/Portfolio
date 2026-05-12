@@ -15,8 +15,8 @@ export default function Hero() {
               Kenya's Digital Growth Partner
             </span>
             <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B1628] leading-tight">
-              We Build Websites That<br />
-              <span className="text-blue-600">Grow African Businesses</span>
+              Kenya's Leading Web Design &amp; SEO Agency<br />
+              <span className="text-blue-600">Built to Rank. Built to Convert.</span>
             </h1>
           </div>
 
