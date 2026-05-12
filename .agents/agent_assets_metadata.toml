@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "7AiX94axaojpCQa14iDPn"
+uri = "file://artifacts/portfolio/public/projects/mavada-technologies.png"
+type = "image"
+title = "Mavada corporate website"
+
+[[generated]]
+id = "KsaT3ke_OIkf1jccWGA6I"
+uri = "file://artifacts/portfolio/public/projects/soul-internet.png"
+type = "image"
+title = "Soul Internet ISP site"
+
+[[generated]]
+id = "3sGLY_MMvv6kyLNsnENAA"
+uri = "file://artifacts/portfolio/public/projects/peprotech-learning.png"
+type = "image"
+title = "Peprotech e-learning platform"
+
+[[generated]]
+id = "x2ZEYqa15av3m9wqRGit9"
+uri = "file://artifacts/portfolio/public/projects/resource-kenya.png"
+type = "image"
+title = "Resource Kenya consulting website"
+
+[[generated]]
+id = "rcDRhKLT6OdgKSUM81VHk"
+uri = "file://artifacts/portfolio/public/projects/jr-paradise-hotel.png"
+type = "image"
+title = "JR Paradise hotel site"
+
+[[generated]]
+id = "OMpbkRTetLJpf1J2H6VU0"
+uri = "file://artifacts/portfolio/public/projects/anthony-gatune-foundation.png"
+type = "image"
+title = "Anthony Gatune foundation website"
+
+[[generated]]
+id = "t2npo54jeYIDTc2SnMXrg"
+uri = "file://artifacts/portfolio/public/projects/chichi-exim.png"
+type = "image"
+title = "Chichi Exim export website"
+
+[[generated]]
+id = "a-cSWbdfwgHOE1h7zOAKD"
+uri = "file://artifacts/portfolio/public/projects/redwood-bliss.png"
+type = "image"
+title = "Redwood Bliss lifestyle site"
