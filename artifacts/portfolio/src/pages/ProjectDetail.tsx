@@ -1,10 +1,7 @@
 import { useParams, Link } from "wouter";
 import { Helmet } from "react-helmet-async";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import Footer from "@/components/layout/Footer";
 import { projects } from "@/data/projects";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ExternalLink, CheckCircle } from "lucide-react";
 import NotFound from "./not-found";
 
@@ -17,39 +14,35 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col w-full bg-background">
+    <div className="min-h-screen flex flex-col w-full bg-white">
       <Helmet>
         <title>{project.name} Case Study | Imperial Enterprise</title>
         <meta name="description" content={`Case study for ${project.name}: ${project.description}`} />
       </Helmet>
 
-      <Navbar />
+      {/* Fixed Back Button */}
+      <div className="fixed top-0 left-0 right-0 z-50 p-4 pointer-events-none">
+        <Link href="/" className="pointer-events-auto inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-slate-200 text-slate-700 hover:text-[#0B1628] font-bold px-4 py-2 rounded-full shadow-sm transition-all hover:shadow-md text-sm">
+          <ArrowLeft size={16} /> Back to Portfolio
+        </Link>
+      </div>
 
-      <main className="flex-grow pt-24 pb-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8">
-            <Button variant="ghost" asChild className="mb-6 -ml-4 hover:bg-transparent hover:text-primary">
-              <Link href="/#projects">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Portfolio
-              </Link>
-            </Button>
-
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <Badge variant="secondary">{project.industry}</Badge>
-                </div>
-                <h1 className="text-4xl md:text-6xl font-extrabold text-foreground">{project.name}</h1>
-              </div>
-              <Button asChild size="lg" className="shrink-0">
-                <a href={project.url} target="_blank" rel="noopener noreferrer">
-                  Visit Live Site <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            </div>
+      <main className="flex-grow pt-24 pb-20">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          
+          {/* Header */}
+          <div className="mb-12 pt-8">
+            <span className="inline-block bg-blue-50 text-blue-600 text-sm font-bold px-4 py-1.5 rounded-full mb-4">
+              {project.industry}
+            </span>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-[#0B1628] leading-tight mb-6">{project.name}</h1>
+            <p className="text-xl text-slate-500 leading-relaxed max-w-3xl">
+              {project.description}
+            </p>
           </div>
 
-          <div className="relative rounded-xl md:rounded-2xl overflow-hidden border border-border bg-card mb-16 aspect-video max-h-[70vh] w-full shadow-2xl">
+          {/* Hero Image */}
+          <div className="relative rounded-2xl overflow-hidden bg-slate-100 mb-16 aspect-[16/10] shadow-lg">
             <img 
               src={project.image} 
               alt={`${project.name} full screenshot`}
@@ -57,29 +50,30 @@ export default function ProjectDetail() {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             <div className="lg:col-span-2 space-y-12">
               <section>
-                <h2 className="text-2xl font-bold mb-4 text-foreground">The Challenge</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <h2 className="text-2xl font-bold text-[#0B1628] mb-4">The Challenge</h2>
+                <p className="text-lg text-slate-600 leading-relaxed">
                   {project.challenge}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4 text-foreground">The Solution</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <h2 className="text-2xl font-bold text-[#0B1628] mb-4">The Solution</h2>
+                <p className="text-lg text-slate-600 leading-relaxed">
                   {project.solution}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-6 text-foreground">Key Features Implemented</h2>
+                <h2 className="text-2xl font-bold text-[#0B1628] mb-6">Key Features</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {project.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
-                      <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-foreground font-medium">{feature}</span>
+                    <div key={i} className="flex items-start gap-3 p-5 bg-slate-50 rounded-xl border border-slate-100">
+                      <CheckCircle className="text-blue-600 shrink-0 mt-0.5" size={20} />
+                      <span className="text-slate-700 font-medium">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -87,28 +81,32 @@ export default function ProjectDetail() {
             </div>
 
             <div className="space-y-8">
-              <div className="bg-card p-6 md:p-8 rounded-xl border border-border">
-                <h3 className="text-xl font-bold mb-6 text-foreground">Results Achieved</h3>
+              <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100">
+                <h3 className="text-xl font-bold text-[#0B1628] mb-6">Results Achieved</h3>
                 <ul className="space-y-4">
                   {project.results.map((result, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0"></div>
-                      <span className="text-muted-foreground">{result}</span>
+                      <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0"></div>
+                      <span className="text-slate-600 font-medium">{result}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="bg-card p-6 md:p-8 rounded-xl border border-border">
-                <h3 className="text-xl font-bold mb-6 text-foreground">Tech Stack</h3>
+              <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100">
+                <h3 className="text-xl font-bold text-[#0B1628] mb-6">Tech Stack</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t, i) => (
-                    <Badge key={i} variant="secondary" className="bg-background text-foreground">
+                    <span key={i} className="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 font-medium text-sm rounded-lg shadow-sm">
                       {t}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
               </div>
+
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors">
+                Visit Live Site <ExternalLink size={18} />
+              </a>
             </div>
           </div>
         </div>

@@ -1,49 +1,53 @@
-import { Link } from "wouter";
+export default function Footer() {
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-export function Footer() {
   return (
-    <footer className="bg-card border-t border-border pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="Imperial Enterprise Logo" className="h-10 w-auto" />
-              <span className="font-bold text-xl">Imperial Enterprise</span>
-            </Link>
-            <p className="text-muted-foreground mb-6 max-w-sm">
-              Your digital growth partner. We build high-performing websites for African businesses, NGOs, and organizations.
+    <footer className="bg-[#0B1628] text-white pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          {/* Brand */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="Imperial Enterprise" className="h-8 object-contain" />
+              <span className="font-bold text-xl tracking-tight">Imperial Enterprise</span>
+            </div>
+            <p className="text-white/60 leading-relaxed max-w-xs text-sm">
+              Nairobi's trusted web design agency. We build high-performing digital solutions across East Africa.
             </p>
           </div>
-          
+
+          {/* Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><a href="/#hero" className="text-muted-foreground hover:text-primary transition-colors">Home</a></li>
-              <li><a href="/#services" className="text-muted-foreground hover:text-primary transition-colors">Services</a></li>
-              <li><a href="/#projects" className="text-muted-foreground hover:text-primary transition-colors">Projects</a></li>
-              <li><a href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
+            <h4 className="font-bold text-lg mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><button onClick={() => scrollTo('projects')} className="text-white/60 hover:text-white transition-colors text-sm font-medium">Projects</button></li>
+              <li><button onClick={() => scrollTo('services')} className="text-white/60 hover:text-white transition-colors text-sm font-medium">Services</button></li>
+              <li><button onClick={() => scrollTo('testimonials')} className="text-white/60 hover:text-white transition-colors text-sm font-medium">Testimonials</button></li>
+              <li><button onClick={() => scrollTo('contact')} className="text-white/60 hover:text-white transition-colors text-sm font-medium">Contact</button></li>
             </ul>
           </div>
-          
+
+          {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Contact Info</h4>
-            <ul className="space-y-3 text-muted-foreground">
-              <li>Nairobi, Kenya</li>
-              <li><a href="mailto:info@imperialenterprise.co.ke" className="hover:text-primary transition-colors">info@imperialenterprise.co.ke</a></li>
-              <li><a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+254 700 000 000</a></li>
+            <h4 className="font-bold text-lg mb-4">Contact Info</h4>
+            <ul className="space-y-2 text-white/60 text-sm font-medium">
+              <li><a href="tel:+254703823398" className="hover:text-white transition-colors">+254 703 823 398</a></li>
+              <li><a href="mailto:info@imperialenterprise.co.ke" className="hover:text-white transition-colors">info@imperialenterprise.co.ke</a></li>
+              <li><a href="https://imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">imperialenterprise.co.ke</a></li>
+              <li className="pt-2">Nairobi, Kenya</li>
             </ul>
           </div>
         </div>
-        
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Imperial Enterprise. All rights reserved.
+
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/40 text-xs">
+            © 2025 Imperial Enterprise. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Twitter</a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Instagram</a>
-          </div>
+          <a href="https://imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors text-xs font-medium">
+            imperialenterprise.co.ke
+          </a>
         </div>
       </div>
     </footer>

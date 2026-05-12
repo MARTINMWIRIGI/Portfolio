@@ -1,158 +1,144 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, MessageSquare, MapPin } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
+import { Mail, MessageCircle, MapPin, Globe } from "lucide-react";
 
-const formSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters")
-});
-
-export function Contact() {
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", message: "" }
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    projectType: "Corporate Website",
+    message: ""
   });
+  const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    toast({
-      title: "Message Sent",
-      description: "Thank you for reaching out. We will get back to you shortly.",
-    });
-    form.reset();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+    setFormData({ name: "", email: "", phone: "", projectType: "Corporate Website", message: "" });
   };
 
   return (
-    <section id="contact" className="py-24 bg-background border-t border-border relative overflow-hidden">
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
-      
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-foreground">Ready to Build Your Website?</h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Join businesses across Kenya and beyond who trust Imperial Enterprise with their digital presence.
-            </p>
+    <section id="contact" className="py-24 bg-[#F0F7FF]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        <div className="text-center mb-16">
+          <span className="text-blue-600 font-semibold text-sm tracking-wide mb-3 block">— Get In Touch</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B1628]">Ready to Build Your Website?</h2>
+        </div>
 
-            <div className="space-y-6 mb-10">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
-                  <MessageSquare />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">WhatsApp</h4>
-                  <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                    +254 700 000 000
-                  </a>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Left - Contact Info */}
+          <div className="space-y-6">
+            <a href="https://wa.me/254703823398" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow group">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <MessageCircle size={24} />
               </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
-                  <Mail />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Email</h4>
-                  <a href="mailto:info@imperialenterprise.co.ke" className="text-muted-foreground hover:text-primary transition-colors">
-                    info@imperialenterprise.co.ke
-                  </a>
-                </div>
+              <div>
+                <h4 className="font-bold text-[#0B1628]">Phone & WhatsApp</h4>
+                <p className="text-slate-500">+254 703 823 398</p>
               </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
-                  <MapPin />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Location</h4>
-                  <p className="text-muted-foreground">Nairobi, Kenya</p>
-                </div>
-              </div>
-            </div>
+            </a>
             
-            <div className="flex gap-4">
-              <Button asChild size="lg" className="w-full sm:w-auto">
-                <a href="https://wa.me/254700000000?text=Hi%20Imperial%20Enterprise%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer">
-                  Chat on WhatsApp
-                </a>
-              </Button>
-            </div>
-          </motion.div>
+            <a href="mailto:info@imperialenterprise.co.ke" className="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow group">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <Mail size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-[#0B1628]">Email Us</h4>
+                <p className="text-slate-500">info@imperialenterprise.co.ke</p>
+              </div>
+            </a>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-card border border-border rounded-2xl p-8 shadow-lg"
-          >
-            <h3 className="text-2xl font-bold mb-6 text-foreground">Send us a message</h3>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="John Doe" {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="john@example.com" {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Tell us about your project..." 
-                          className="min-h-[120px] bg-background" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" className="w-full h-12 text-base font-medium">
+            <a href="https://imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow group">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <Globe size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-[#0B1628]">Website</h4>
+                <p className="text-slate-500">imperialenterprise.co.ke</p>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
+                <MapPin size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-[#0B1628]">Location</h4>
+                <p className="text-slate-500">Nairobi, Kenya</p>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <a href="https://wa.me/254703823398?text=Hi%20Imperial%20Enterprise%2C%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20b858] text-white font-bold py-4 rounded-xl transition-colors shadow-lg shadow-green-200">
+                <MessageCircle size={20} /> Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          {/* Right - Form */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+            {submitted ? (
+              <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-12">
+                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle size={40} />
+                </div>
+                <h3 className="text-2xl font-bold text-[#0B1628]">Message Sent!</h3>
+                <p className="text-slate-500">Thank you for reaching out. We'll get back to you shortly.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-bold text-[#0B1628] mb-2">Full Name</label>
+                  <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="John Doe" data-testid="input-name" />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-[#0B1628] mb-2">Email Address</label>
+                    <input type="email" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="john@example.com" data-testid="input-email" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-[#0B1628] mb-2">Phone Number</label>
+                    <input type="tel" required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="+254 7XX XXX XXX" data-testid="input-phone" />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-[#0B1628] mb-2">Project Type</label>
+                  <select value={formData.projectType} onChange={e => setFormData({...formData, projectType: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all" data-testid="select-project-type">
+                    <option>Corporate Website</option>
+                    <option>E-Commerce Store</option>
+                    <option>NGO Website</option>
+                    <option>Hotel Website</option>
+                    <option>ISP Website</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-[#0B1628] mb-2">Message</label>
+                  <textarea required rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-none" placeholder="Tell us about your project..." data-testid="textarea-message"></textarea>
+                </div>
+
+                <button type="submit" data-testid="submit-contact" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors">
                   Send Message
-                </Button>
+                </button>
               </form>
-            </Form>
-          </motion.div>
+            )}
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function CheckCircle(props: any) {
+  return (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
   );
 }

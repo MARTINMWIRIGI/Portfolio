@@ -1,35 +1,30 @@
 import { Helmet } from "react-helmet-async";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/home/Hero";
-import { Services } from "@/components/home/Services";
-import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { CaseStudyHighlight } from "@/components/home/CaseStudyHighlight";
-import { TechStack } from "@/components/home/TechStack";
-import { Testimonials } from "@/components/home/Testimonials";
-import { Contact } from "@/components/home/Contact";
+import Hero from "@/components/home/Hero";
+import Ticker from "@/components/home/Ticker";
+import Services from "@/components/home/Services";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
+import Stats from "@/components/home/Stats";
+import Testimonials from "@/components/home/Testimonials";
+import Contact from "@/components/home/Contact";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col w-full">
+    <>
       <Helmet>
         <title>Imperial Enterprise | Digital Agency Kenya</title>
-        <meta name="description" content="Nairobi-based digital agency building high-performing websites for African businesses, NGOs, hotels, and organizations." />
+        <meta name="description" content="Nairobi-based digital agency building high-performing websites for African businesses, NGOs, hotels, and organizations. View our portfolio." />
       </Helmet>
-      
-      <Navbar />
-      
-      <main className="flex-grow">
+      <main>
         <Hero />
+        <Ticker />
         <Services />
         <FeaturedProjects />
-        <CaseStudyHighlight />
-        <TechStack />
+        <Stats />
         <Testimonials />
         <Contact />
       </main>
-
       <Footer />
-    </div>
+    </>
   );
 }
