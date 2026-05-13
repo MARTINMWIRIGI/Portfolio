@@ -5,7 +5,7 @@ import { projects } from "@/data/projects";
 import { ArrowLeft, ExternalLink, CheckCircle } from "lucide-react";
 import NotFound from "./not-found";
 
-const BASE = "https://imperialenterprise.co.ke";
+const BASE = "https://portfolio.imperialenterprise.co.ke";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
