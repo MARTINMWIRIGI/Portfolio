@@ -174,3 +174,14 @@
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
+
+#replit-badge-container,
+[id*="replit-badge"],
+[class*="replit-badge"],
+iframe[src*="replit.com/badge"],
+a[href*="replit.com"] img[src*="badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
