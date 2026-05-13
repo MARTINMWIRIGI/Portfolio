@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mail, MessageCircle, MapPin, Globe, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
-const TO_EMAIL = "info@portfolio.imperialenterprise.co.ke";
+const TO_EMAIL = "info@imperialenterprise.co.ke";
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
