@@ -8,5 +8,3 @@ Crawl-delay: 0
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
-
-Sitemap: https://portfolio.imperialenterprise.co.ke/sitemap.xml
