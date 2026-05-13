@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Mail, MessageCircle, MapPin, Globe, CheckCircle } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Globe, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 const TO_EMAIL = "info@imperialenterprise.co.ke";
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,23 +14,51 @@ export default function Contact() {
     projectType: "Corporate Website",
     message: ""
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
 
-    const subject = encodeURIComponent(
-      `Website Enquiry — ${formData.projectType} | ${formData.name}`
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nProject Type: ${formData.projectType}\n\nMessage:\n${formData.message}`
-    );
+    if (!WEB3FORMS_KEY) {
+      setStatus("error");
+      setErrorMsg("Form service is not configured yet. Please contact us directly by email or WhatsApp.");
+      return;
+    }
 
-    window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    try {
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: `Website Enquiry — ${formData.projectType} | ${formData.name}`,
+        from_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        project_type: formData.projectType,
+        message: formData.message,
+        to_email: TO_EMAIL,
+      };
 
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 6000);
-    setFormData({ name: "", email: "", phone: "", projectType: "Corporate Website", message: "" });
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json() as { success: boolean; message?: string };
+
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", projectType: "Corporate Website", message: "" });
+      } else {
+        setStatus("error");
+        setErrorMsg(data.message ?? "Submission failed. Please try again or contact us directly.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Network error. Please check your connection and try again.");
+    }
   };
 
   return (
@@ -90,13 +121,19 @@ export default function Contact() {
 
           {/* Right - Form */}
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-            {submitted ? (
+            {status === "success" ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-12">
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
                   <CheckCircle size={40} />
                 </div>
-                <h3 className="text-2xl font-bold text-[#0B1628]">Opening your email app…</h3>
-                <p className="text-slate-500">Your message details have been pre-filled. Just hit Send in your email client to reach us at <strong>{TO_EMAIL}</strong>.</p>
+                <h3 className="text-2xl font-bold text-[#0B1628]">Message Sent!</h3>
+                <p className="text-slate-500">Thank you for reaching out. We've received your enquiry and will get back to you shortly at <strong>{TO_EMAIL}</strong>.</p>
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="mt-4 text-blue-600 font-semibold hover:underline text-sm"
+                >
+                  Send another message
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -133,8 +170,27 @@ export default function Contact() {
                   <textarea required rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-none" placeholder="Tell us about your project..." data-testid="textarea-message"></textarea>
                 </div>
 
-                <button type="submit" data-testid="submit-contact" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors">
-                  Send Message to Imperial Enterprise
+                {status === "error" && (
+                  <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">
+                    <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  data-testid="submit-contact"
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2"
+                >
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    "Send Message to Imperial Enterprise"
+                  )}
                 </button>
                 <p className="text-xs text-slate-400 text-center">Submissions go directly to {TO_EMAIL}</p>
               </form>

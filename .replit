@@ -37,3 +37,8 @@ externalPort = 80
 
 [nix]
 channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+VITE_WEB3FORMS_KEY = "4a1fc496-95b3-4a06-9ebb-76a21703efee"
