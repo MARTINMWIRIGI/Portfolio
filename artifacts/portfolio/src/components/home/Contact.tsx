@@ -98,7 +98,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="font-bold text-[#0B1628]">Website</h4>
-                <p className="text-slate-500">portfolio.imperialenterprise.co.ke</p>
+                <p className="text-slate-500">imperialenterprise.co.ke</p>
               </div>
             </a>
 
