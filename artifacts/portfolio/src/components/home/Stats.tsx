@@ -33,8 +33,8 @@ export default function Stats() {
               <a href="#contact" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-4 rounded-full transition-colors">
                 Start Your Project
               </a>
-              <a href="https://imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="border-2 border-white/20 text-white hover:bg-white hover:text-[#0B1628] font-semibold px-8 py-4 rounded-full transition-colors">
-                imperialenterprise.co.ke
+              <a href="https://portfolio.imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="border-2 border-white/20 text-white hover:bg-white hover:text-[#0B1628] font-semibold px-8 py-4 rounded-full transition-colors">
+                portfolio.imperialenterprise.co.ke
               </a>
             </div>
           </motion.div>
