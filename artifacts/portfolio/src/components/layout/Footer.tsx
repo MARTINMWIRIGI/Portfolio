@@ -13,8 +13,8 @@ export default function Footer() {
             <h4 className="font-semibold text-sm mb-3 text-white/80 uppercase tracking-wider">Contact</h4>
             <ul className="space-y-1.5 text-white/60 text-sm font-medium">
               <li><a href="tel:+254703823398" className="hover:text-white transition-colors">+254 703 823 398</a></li>
-              <li><a href="mailto:info@portfolio.imperialenterprise.co.ke" className="hover:text-white transition-colors">info@portfolio.imperialenterprise.co.ke</a></li>
-              <li><a href="https://portfolio.imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">portfolio.imperialenterprise.co.ke</a></li>
+              <li><a href="mailto:info@imperialenterprise.co.ke" className="hover:text-white transition-colors">info@imperialenterprise.co.ke</a></li>
+              <li><a href="https://imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">imperialenterprise.co.ke</a></li>
               <li className="pt-1">Nairobi, Kenya</li>
             </ul>
           </div>
