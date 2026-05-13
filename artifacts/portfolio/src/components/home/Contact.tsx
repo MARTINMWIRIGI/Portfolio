@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mail, MessageCircle, MapPin, Globe, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
-const TO_EMAIL = "info@imperialenterprise.co.ke";
+const TO_EMAIL = "info@portfolio.imperialenterprise.co.ke";
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -92,13 +92,13 @@ export default function Contact() {
               </div>
             </a>
 
-            <a href="https://imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow group">
+            <a href="https://portfolio.imperialenterprise.co.ke" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow group">
               <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <Globe size={24} />
               </div>
               <div>
                 <h4 className="font-bold text-[#0B1628]">Website</h4>
-                <p className="text-slate-500">imperialenterprise.co.ke</p>
+                <p className="text-slate-500">portfolio.imperialenterprise.co.ke</p>
               </div>
             </a>
 
